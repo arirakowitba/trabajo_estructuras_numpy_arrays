@@ -24,6 +24,7 @@ trimestres = ['Q1', 'Q2', 'Q3', 'Q4']
 #Nivel 1
 totales_por_productos_unidades = unidades.sum(axis=1)
 totales_por_productos_ingresos = ingresos.sum(axis=1)
+
 print("\n1) Ventas totales anuales (en unidades e ingresos):")
 for i in range(len(productos)):
     print(f"Ventas totales del producto {productos[i]}: {totales_por_productos_unidades[i]} unidades por ${totales_por_productos_ingresos[i]}.")
@@ -72,6 +73,7 @@ for i in range(len(productos)):
     for t in range(1, 4):
         tasa = (unidades[i][t] - unidades[i][t - 1]) / unidades[i][t - 1]
         tasas.append(tasa)
+        
     tasa_crecimiento_trimestral.append(np.mean(tasas) * 100)
 
 print("\n9) Tasa de crecimiento promedio trimestral por producto:")
@@ -104,4 +106,37 @@ for i in range(len(productos)):
 
 #Nivel 4
 #pendiente para semana que viene porque aún no lo vimos
+
+
+
+
+
+# ========= Nivel 5 ========
+'''
+¿En qué 2 productos invertirían el presupuesto de marketing 2024? ¿Por qué?
+
+# Información escasa sobre los productos. Depende de la rentabilidad de cada uno (margen %), 
+# objetivos de la empresa, canibalización entre productos, saturación de mercado y/o demanda, 
+# capacidad actual de la empresa de vender sin publicidad, etc.
+
+
+¿Algún producto debería discontinuarse o rediseñarse?
+
+# Imposible de definir sin datos sobre rentabilidad y competencia.
+
+
+¿Qué operaciones vectorizadas de NumPy les ahorraron tiempo?
+
+# unidades.sum(axis=1) e ingresos.sum(axis=1) ## Total por producto
+# ingresos.sum(axis=0)  ## Total por trimestre
+# np.argmax()
+
+
+¿Cómo explicarían la diferencia entre crecimiento en unidades vs ingresos?
+
+# Proporcional, porque en este ejercicio el precio de los productos 
+# es constante durante todos los trimestres. Ingreso = P x Q 
+# ## P constante, I(f) / I(i) = Q(f) / Q(i) 
+
+'''
 
