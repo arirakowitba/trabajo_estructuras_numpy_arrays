@@ -81,27 +81,27 @@ for i in range(len(productos)):
     print(f"{productos[i]}: {tasa_crecimiento_trimestral[i]:.2f}%")
 
 #Nivel 3
-ingreso_total = ingresos.sum(axis=1)
-unidades_total = unidades.sum(axis=1)
-ingreso_promedio_por_unidad = ingreso_total / unidades_total
 print("\n10) Ingreso promedio por unidad:")
+total_ingreso = ingresos.sum(axis=1)
+total_unidades = unidades.sum(axis=1)
 for i in range(len(productos)):
-    print(f"{productos[i]}: ${ingreso_promedio_por_unidad[i]:.2f}")
+    print('Ingreso del producto', productos[i], total_ingreso[i]/total_unidades[i])
 
-indice_premium = ingreso_promedio_por_unidad.argmax()
-print(f"\n11) Producto más premium: {productos[indice_premium]} (${ingreso_promedio_por_unidad[indice_premium]:.2f} por unidad)")
+total_ingreso = ingresos.sum(axis=1)
+total_unidades = unidades.sum(axis=1)
+ingreso_por_unidad = total_ingreso / total_unidades
+print('\n11) El producto mas premium es', productos[np.argmax(ingreso_por_unidad)], 'con un total de', ingreso_por_unidad.max(), 'recaudados por unidad') 
 
 
-total_ingresos = ingresos.sum()
-porcentaje_ingresos = (ingreso_total / total_ingresos) * 100
 print("\n12) Porcentaje del ingreso total por producto:")
+total_recaudado = total_ingreso.sum()
 for i in range(len(productos)):
-    print(f"{productos[i]}: {porcentaje_ingresos[i]:.2f}%")
+    print(f'El producto {productos[i]} recaudo el {100*total_ingreso[i]/total_recaudado} % del ingreso')
 
-mejor_trimestre = ingresos.argmax(axis=1)
+
 print("\n13) Mejor trimestre por producto:")
 for i in range(len(productos)):
-    print(f"{productos[i]}: {trimestres[mejor_trimestre[i]]}")
+    print(f'Para el producto {productos[i]}, el mejor trimestre fue el {np.argmax(ingresos[i])+1}Q')
 
 
 #Nivel 4
