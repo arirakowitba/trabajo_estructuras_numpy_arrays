@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 productos = ['Producto A', 'Producto B', 'Producto C', 'Producto D', 'Producto E']
 almacenes = ['Norte', 'Sur', 'Este', 'Oeste', 'Centro', 'Costero']
