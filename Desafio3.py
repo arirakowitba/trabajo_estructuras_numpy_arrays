@@ -83,7 +83,7 @@ print("\n7) Almacén con mayor valor total:", almacen_mayor_valor)
 
 print("\n8) Porcentaje del valor total por producto:")
 for nombre, porcentaje in zip(productos, porcentaje_valor_producto):
-    print(nombre, ":", porcentaje)
+    print(nombre, ":", f'{porcentaje:.2f} %')
 
 
 
@@ -110,15 +110,21 @@ costo_mensual_por_almacen_y_producto = inventario * costos_almacenamiento
 
 print("\n9) Meses de cobertura por producto (stock_total / demanda_mensual):")
 for producto, meses in zip(productos, meses_cobertura):
-    print(producto, ":", meses)
+    print(producto, ":", f'{meses:.2f}')
 
 print("\n10) Productos en riesgo de desabastecimiento (< 1 mes):")
-for nombre in productos_riesgo:
-    print(nombre)
+if productos_riesgo:
+    for nombre in productos_riesgo:
+        print(nombre)
+else:
+    print('-- No hay productos en riesgo de desabastecimiento')
 
 print("\n11) Productos con exceso de inventario (> 1.5 meses):")
-for nombre in productos_exceso:
-    print(nombre)
+if productos_riesgo:
+    for nombre in productos_exceso:
+        print(nombre)
+else:
+    print('-- No hay productos con exceso de inventario')
 
 print("\n12) Costo mensual de almacenamiento por producto:")
 for producto, costo in zip(productos, costo_mensual_por_producto):
@@ -138,7 +144,7 @@ orden_desc.reverse()
 
 
 # 14) Distribución óptima
-porcentaje_optimo = np.ones(inventario.shape) * (1 / len(almacenes))
+porcentaje_optimo = np.ones(inventario.shape) * (1 / len(almacenes)) * 100
 
 # 13) Ranking de almacenes por valor de inventario
 print("\n13) Ranking de almacenes por valor de inventario:")
@@ -150,6 +156,35 @@ for indice in orden_desc:
 # 14) Distribución óptima del stock (porcentaje por almacén y producto)
 print("\n14) Distribución óptima del stock (% por almacén y producto):")
 for i, almacen in enumerate(almacenes):
-    print(almacen, ":", porcentaje_optimo[i])
+    print(almacen, ':', porcentaje_optimo[i])
 
+
+
+# ======= Nivel 5 ========
+
+'''
+¿Qué producto requiere reabastecimiento urgente? ¿Cuál puede reducirse?
+
+# Ninguno, ninguno. Todos > 1 y < 1.5 meses
+
+
+¿Qué almacén tiene el inventario más "eficiente" (balance valor/volumen)?
+
+#  Almacen Oeste, con 1940 unidades, valor total $ 102.970, y valor/volumen de $ 53.08
+
+
+¿Cómo usaron broadcasting de NumPy en sus cálculos?
+
+# inventario * precios 
+# inventario * costos_almacenamiento 
+# stock_total_por_producto / demanda_mensual 
+
+
+Si pudieran transferir stock entre almacenes, ¿qué movimientos harían?
+
+# No hay datos que hagan referencia a costos especificos de cada almacen, capacidad total, 
+# ni tampoco datos referentes a la utilidad geografica de cada almacen. 
+# Por ende, responder esto no tendria sentido hasta tener estos datos relevantes.
+
+'''
 
